@@ -7,15 +7,43 @@
    * Postman
    * Git
    * Postgres
-   * pgMyAdmin
+   * pgAdmin
    * Docker
    * PowerShell
    * Versão do maven 2.4.4
 
-## Sobre o projeto
+## Imagens, Containers e Registry
 
-Neste projeto eu aprendi. Criar projeto Spring Boot, criar monorepositório Git, organizar projeto em camadas, criar entidades, perfis de projeto, seeding da base de dados, criar web services REST, padrão DTO, CRUD completo, tratamento de exceções, dados de auditoria e paginação de dados, trabalhar com Postman para testar as requisições, validação de dados com Bean Validation, autenticação e autorização com OAuth2 e JWT
-   
+- Imagens: 
+    É a difinição estatica de como um container deve ser instânciado, uma imagem é composta por camada, uma imagem tipicamente é difinida de outra imagem existente, 
+uma imagem inicial é dfinida a partir de scratch
+- Contanier:
+  É uma instância de uma imagem pode estar em execução ou parado, container é stateful: mantém estado. Ele possui  uma camada superior de escrito
+- Registry:
+   É um serviço que armazena imagens, registry padrão para Docker:Docker Hub
+ 
+ ## Comandos Docker
+ 
+ - docker ps :->                                Lista os containers
+ - docker ps -a:->                            Lista os container inclusive os parados
+ - docker pull image:tag:->                     Baixar uma imagem do docker hub
+ - docker imagens:->                           Listar as imagens baixadas
+ - docker run options image:tag command args:-> Iniciar um container com base em uma imagem se não estiver baixada baixa do docker hub
+ - docker start:-> Reinicia um container
+ - docker stop:-> Parar o container
+ - docker rm idContainer:-> Deletar um container
+ - docker rmi IdConatiner:-> Deleta imagem
+ - docker attach:-> Acessar o container
+ - docker logs -f idContainer:-> Acompanhar os logs do container
+ - docker ps --size:-> Mostar o espaço em bits ocupados pelo container
+ - exit:-> Parar sair IdContainer
+ - ls:-> Para ver se estar dentro do container
+
+
+## Instâciando um container Postgres
+
+docker run -p 5433:5432 --name nomeDoContainer -e POSTGRES_PASSWORD=123456 -e POSTGRES_DB=minha_base nomeDaMinhaImagem
+ 
   
 ## Arquivos de configuração:
 
@@ -43,35 +71,9 @@ Neste projeto eu aprendi. Criar projeto Spring Boot, criar monorepositório Git,
          spring.jpa.hibernate.ddl-auto=none
 	 
 	 
-### Arquivo File criado na raiz no meu projeto
 
-```java
-     FROM openjdk:11
-     VOLUME /tmp
-     EXPOSE 8080
-     ADD ./target/dscatalog-0.0.1-SNAPSHOT.jar dscatalog.jar  
-     ENTRYPOINT ["java", "-jar", "/dscatalog.jar"]
-  
- ````
- 
- ## Comandos git
- 
- ```java
-    - ./mvnw -v 
-    - ./mvnw clean package
-    
 
- 
- ```
- 
- ## No PowerShell
- ```java
-   - colar o caminho do meu arquivo. Lembra que esse comando é sempre onde esta minha pasta target
-   - docker build -t nomeImagem:v1 .
-	}
-}
 
- ````
  
  
  
